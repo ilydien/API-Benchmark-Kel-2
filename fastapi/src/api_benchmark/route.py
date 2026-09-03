@@ -5,21 +5,15 @@ import os
 
 router = APIRouter()
 
-FILE_DIR = Path(os.environ.get("FILE_DIR", "./files")).resolve()
+FILE_DIR = Path(os.environ.get("FILE_DIR", "/app/files")).resolve()
+
 
 @router.get("/files/{filename}")
-def serve_file(filename : str): 
+def serve_file(filename: str):
 
     file_path = FILE_DIR / filename
 
     if not file_path.exists():
-        raise HTTPException(
-            status_code=404,
-            detail="File not found"
-        )
+        raise HTTPException(status_code=404, detail="File not found")
 
-    return FileResponse(
-        path=file_path,
-        media_type="text/plain",
-        filename=filename
-    )
+    return FileResponse(path=file_path, media_type="text/plain", filename=filename)
