@@ -1,21 +1,39 @@
 services:
   fastapi:
     build: ./fastapi
+    env_file:
+      - .env
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./files:/app/files
     profiles:
       - nolb
 
   fastapi-1:
     build: ./fastapi
+    env_file:
+      - .env
+    volumes:
+      - ./files:/app/files
     profiles:
       - lb
 
   fastapi-2:
     build: ./fastapi
+    env_file:
+      - .env
+    volumes:
+      - ./files:/app/files
     profiles:
       - lb
 
   fastapi-3:
     build: ./fastapi
+    env_file:
+      - .env
+    volumes:
+      - ./files:/app/files
     profiles:
       - lb
 
