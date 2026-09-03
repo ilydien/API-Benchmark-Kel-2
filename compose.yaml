@@ -63,6 +63,7 @@ services:
       - fastapi
     profiles:
       - nolb
+    entrypoint: locust -f /locustfile.py --processes 4
 
   locust-lb:
     image: docker.io/locustio/locust:2.46.4
@@ -79,3 +80,4 @@ services:
       - fastapi-3
     profiles:
       - lb
+    entrypoint: locust -f /locustfile.py --processes 4
